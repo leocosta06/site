@@ -1,0 +1,845 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE AMBIENTE (PALETA DE CORES PRETO E DOURADO)
+   ========================================================================== */
+:root {
+  --preto-puro: #000000;
+  --preto-profundo: #121212;
+  --preto-grafite: #1C1C1C;
+  --preto-suave: #2A2A2A;
+  --dourado-claro: #F1E5AC;
+  --dourado-principal: #D4AF37;
+  --dourado-medio: #AA8624;
+  --dourado-escuro: #806414;
+  --ouro-velho: #C5A059;
+  --texto-claro: #F5F5F5;
+  --texto-escuro: #1A1A1A;
+  --branco-perola: #FFFDF6;
+  --cinza-detalhe: #4A4A4A;
+}
+
+/* ==========================================================================
+   2. RESETS E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--preto-profundo);
+  color: var(--texto-claro);
+  overflow-x: hidden;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: var(--dourado-escuro);
+  color: var(--texto-claro);
+}
+
+.btn-primary:hover {
+  background: var(--dourado-principal);
+  color: var(--preto-puro);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--dourado-principal);
+  color: var(--dourado-principal);
+}
+
+.btn-outline:hover {
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. ESTRUTURA SEÇÕES PADRÃO
+   ========================================================================== */
+section {
+  padding: 80px 5%;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dourado-medio);
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--dourado-principal);
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  color: var(--texto-claro);
+  opacity: 0.8;
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+/* ==========================================================================
+   4. NAVEGAÇÃO GLOBAL
+   ========================================================================== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  padding: 15px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease-in-out, padding 0.3s ease;
+}
+
+nav.scroll-down { transform: translateY(-110%); }
+nav.scroll-up   { transform: translateY(0); box-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+nav.shrink      { padding: 8px 5%; }
+
+.nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--dourado-principal);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--texto-claro);
+  opacity: 0.8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--ouro-velho);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   5. BARRA DE STATUS
+   ========================================================================== */
+.status-bar {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-left: 10px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  animation: pulse 2s infinite;
+}
+
+.status-bar.status-open {
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid #4CAF50;
+  color: #4CAF50;
+  box-shadow: 0 0 10px #4CAF50;
+}
+
+.status-bar.status-closed {
+  background: rgba(231, 76, 60, 0.15);
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  box-shadow: 0 0 10px #e74c3c;
+}
+
+/* Botão Hambúrguer */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 2px;
+  background-color: var(--dourado-principal);
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   6. HERO
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--preto-puro) 0%, var(--preto-profundo) 50%, var(--preto-grafite) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 20px 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--dourado-principal) 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  color: var(--branco-perola);
+  line-height: 1.1;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+  animation: fadeDown 0.9s ease both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--dourado-principal);
+}
+
+.hero p {
+  color: var(--texto-claro);
+  opacity: 0.9;
+  font-size: 1.05rem;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+  animation: fadeDown 1s ease both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  animation: fadeDown 1s ease both;
+}
+
+/* ==========================================================================
+   7. HORÁRIOS
+   ========================================================================== */
+#horarios {
+  background: var(--preto-grafite);
+}
+
+#horarios .section-title {
+  color: var(--branco-perola);
+}
+
+.horarios-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 560px;
+}
+
+.horario-card {
+  padding: 18px 22px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(212, 175, 55, 0.15);
+  background: var(--preto-suave);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--texto-claro);
+}
+
+.horario-card.hoje {
+  background: var(--preto-puro);
+  border-color: var(--dourado-principal);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.15);
+}
+
+.horario-card.hoje .dia-nome {
+  color: var(--dourado-principal);
+}
+
+.dia-nome {
+  font-weight: 700;
+}
+
+.horario-hora {
+  color: var(--dourado-claro);
+}
+
+.hoje-badge {
+  font-size: 0.65rem;
+  background: var(--dourado-escuro);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 6px;
+}
+
+/* ==========================================================================
+   8. LOCALIZAÇÃO
+   ========================================================================== */
+#localizacao {
+  background: var(--preto-puro);
+}
+
+.loc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.loc-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.loc-icon {
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--dourado-principal);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.loc-text h4 {
+  color: var(--dourado-claro);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 4px;
+}
+
+.loc-text p {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.map-placeholder {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 320px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.map-placeholder iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(1) invert(0.9) sepia(0.4) hue-rotate(10deg);
+}
+
+/* ==========================================================================
+   9. CARDÁPIO / SERVIÇOS
+   ========================================================================== */
+#cardapio {
+  background: var(--preto-profundo);
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.tab {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1.5px solid var(--dourado-medio);
+  background: transparent;
+  color: var(--dourado-claro);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  background: var(--ouro-velho);
+  border-color: var(--dourado-principal);
+  color: var(--preto-puro);
+}
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.produto-card {
+  background: var(--preto-grafite);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.05);
+  display: none;
+  transition: transform 0.25s;
+}
+
+.produto-card.visible {
+  display: block;
+}
+
+.produto-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.produto-img {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, var(--preto-suave), var(--preto-puro));
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.produto-info {
+  padding: 16px;
+}
+
+.produto-nome {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--branco-perola);
+  margin-bottom: 6px;
+  font-weight: 900;
+}
+
+.produto-desc {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.produto-preco {
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--dourado-principal);
+}
+
+/* ==========================================================================
+   10. WHATSAPP FLUTUANTE E FOOTER
+   ========================================================================== */
+.wa-float {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 999999 !important;
+  background: #25D366;
+  color: white;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+  text-decoration: none;
+  transition: transform 0.25s;
+}
+
+.wa-float:hover {
+  transform: scale(1.1);
+}
+
+.wa-tooltip {
+  position: absolute;
+  right: 68px;
+  background: var(--dourado-principal);
+  color: var(--preto-puro);
+  font-size: 0.78rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  font-weight: 700;
+}
+
+.wa-float:hover .wa-tooltip {
+  opacity: 1;
+}
+
+footer {
+  background: var(--preto-puro);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  opacity: 0.6;
+}
+
+footer span {
+  color: var(--ouro-velho);
+}
+
+footer a {
+  color: var(--dourado-principal);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   11. KEYFRAMES
+   ========================================================================== */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   12. TABLET (max 900px)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .loc-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .map-placeholder {
+    height: 260px;
+  }
+}
+
+/* ==========================================================================
+   13. MOBILE (max 700px)
+   ========================================================================== */
+@media (max-width: 700px) {
+
+  /* NAV: vira coluna, ocupa largura toda */
+  nav {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 10px 4% !important;
+    gap: 6px !important;
+    transform: translateY(0) !important;
+  }
+
+  nav.scroll-down,
+  nav.scroll-up {
+    transform: translateY(0) !important;
+  }
+
+  /* Linha 1: logo + hambúrguer */
+  .nav-top {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0 !important;
+  }
+
+  .nav-logo {
+    font-size: 1rem !important;
+    gap: 6px !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+  }
+
+  /* Hambúrguer aparece */
+  .menu-toggle {
+    display: flex !important;
+    flex-shrink: 0 !important;
+    margin-left: 8px !important;
+  }
+
+  .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  /* Linha 2: status bar ocupa a largura inteira abaixo */
+  .status-bar,
+  .status-bar.status-open,
+  .status-bar.status-closed {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 0.68rem !important;
+    padding: 5px 10px !important;
+    margin: 0 !important;
+    border-radius: 6px !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+    animation: none !important;
+  }
+
+  /* Menu lateral: tela cheia a partir do topo */
+  .nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: -100% !important;
+    width: 75% !important;
+    max-width: 280px !important;
+    height: 100vh !important;
+    background: rgba(10, 10, 10, 0.99) !important;
+    backdrop-filter: blur(20px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding: 60px 32px !important;
+    gap: 28px !important;
+    border-left: 1px solid rgba(212, 175, 55, 0.2) !important;
+    transition: right 0.35s ease !important;
+    z-index: 10000 !important;
+    display: flex !important;
+  }
+
+  .nav-links.active {
+    right: 0 !important;
+  }
+
+  .nav-links a {
+    font-size: 1rem !important;
+    letter-spacing: 0.1em !important;
+    opacity: 1 !important;
+  }
+
+  /* SEÇÕES */
+  section {
+    padding: 52px 5%;
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .section-sub {
+    font-size: 0.88rem;
+    margin-bottom: 28px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 120px 6% 56px;
+    min-height: 100svh;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+  }
+
+  .hero p {
+    font-size: 0.92rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+
+  /* HORÁRIOS */
+  .horarios-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .horario-card {
+    padding: 13px 16px;
+    font-size: 0.83rem;
+  }
+
+  /* LOCALIZAÇÃO */
+  .loc-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .loc-card {
+    padding: 18px;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .loc-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .loc-text p {
+    font-size: 0.82rem;
+  }
+
+  .map-placeholder {
+    height: 210px;
+    border-radius: 12px;
+  }
+
+  /* SERVIÇOS */
+  .tabs {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+  }
+
+  .produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .produto-img {
+    height: 100px;
+    font-size: 2.4rem;
+  }
+
+  .produto-info {
+    padding: 10px 12px 12px;
+  }
+
+  .produto-nome {
+    font-size: 0.92rem;
+    margin-bottom: 4px;
+  }
+
+  .produto-desc {
+    font-size: 0.76rem;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .produto-preco {
+    font-size: 0.95rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 20px 16px;
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+
+  /* WHATSAPP */
+  .wa-float {
+    bottom: 16px !important;
+    right: 16px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+/* ==========================================================================
+   14. TELAS MUITO PEQUENAS (max 380px)
+   ========================================================================== */
+@media (max-width: 380px) {
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-logo {
+    font-size: 0.88rem !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.7rem, 10vw, 2.2rem);
+  }
+
+  .btn {
+    font-size: 0.84rem;
+    padding: 11px 18px;
+  }
+
+  .tab {
+    padding: 6px 10px;
+    font-size: 0.74rem;
+  }
+}
