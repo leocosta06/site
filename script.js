@@ -60,7 +60,6 @@ function renderHorarios() {
 }
 
 // ─── PRODUTOS / SERVIÇOS ─────────────────────────────────
-// Mantidos os IDs temporários para conversar com o HTML sem quebras
 const produtos = [
   { nome: 'Escova Modelada',       cat: 'cafe',    emoji: '💇‍♀️', desc: 'Lavagem especial, secagem e modelagem dos fios', preco: 'R$ 60,00'  },
   { nome: 'Escova Lisa Classic',   cat: 'cafe',    emoji: '✨', desc: 'Fios super alinhados, brilho intenso e finalização', preco: 'R$ 50,00'  },
@@ -112,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.getElementById('mainNav');
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
+  const menuClose = document.getElementById('menuClose'); // Captura o novo botão de fechar (X)
   
   let lastScrollTop = 0;
   const shrinkOffset = 50;
@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   });
 
+  // Evento para abrir/fechar pelo botão hambúrguer
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
       menuToggle.classList.toggle('active');
@@ -148,6 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // NOVO: Evento dedicado para fechar o menu ao clicar no botão "X"
+  if (menuClose && menuToggle && navLinks) {
+    menuClose.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  }
+
+  // Fecha o menu automaticamente ao clicar em qualquer link interno
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       if (menuToggle && navLinks) {
