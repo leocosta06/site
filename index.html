@@ -10,12 +10,13 @@
 <body>
 
 <nav id="mainNav">
-  <div class="nav-top">
-    <a href="#home" class="nav-logo" id="navLogo"><span>☕</span> </a>
-    
-    <div class="status-bar">
-      <span id="statusText">Aberto agora</span>
-    </div>
+  <div class="navtop">
+    <a href="#home" class="nav-logo" id="navLogo"><span>☕</span>
+     </a>
+     <div class="status-bar">
+    <span id="statusText">Aberto agora</span>
+  </div>
+  <p> </p>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">
       <span></span>
@@ -23,6 +24,7 @@
       <span></span>
     </button> 
   </div>
+     
 
   <ul class="nav-links" id="navLinks">
     <button class="menu-close" id="menuClose" aria-label="Fechar Menu">&times;</button>
@@ -41,7 +43,7 @@
 <p><strong>Profissionais que escutam você, tratamentos sob medida e um ambiente feito para você relaxar </strong></p>
   <div class="hero-buttons">
     <a href="#cardapio" class="btn btn-primary">Ver Serviços</a>
-    <a href="https://wa.me/5511999999999?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20informações" target="_blank" class="btn btn-outline">Falar no WhatsApp</a>
+    <a href="https://wa.me/5592988565715?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20informações" target="_blank" class="btn btn-outline">Falar no WhatsApp</a>
   </div>
 </section>
 
@@ -80,21 +82,32 @@
         <div class="loc-icon">📞</div>
         <div class="loc-text">
           <h4>Contato</h4>
-          <p>(92) 98856-5715</p>
+            <p><a href="https://wa.me/5592988565715?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20informações" target="_blank" class="cotato">92988565715</a></p>
         </div>
       </div>
       <a href="https://maps.google.com/?q=Rua+Harmonia,+485,+Vila+Madalena,+São+Paulo"
          target="_blank" class="btn btn-primary" style="margin-top:8px; display:inline-flex;">
-        🗺 Abrir no Mapas
+         Abrir no Mapa
       </a>
     </div>
 
-    <div class="map-placeholder">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.6!2d-46.6913!3d-23.5538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5792f79ec7f5%3A0x18a5d0bb7de5e8ed!2sVila+Madalena%2C+S%C3%A3o+Paulo!5e0!3m2!1spt!2sbr!4v1"
-        allowfullscreen loading="lazy">
-      </iframe>
-    </div>
+    <a href="https://www.instagram.com/chicmaria1?utm_source=qr&igsh=M2FjMXd4ajRseGcx"
+       target="_blank" class="insta-card">
+      <div class="insta-card-top">
+      
+        </div>
+        <svg class="insta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -104,10 +117,11 @@
   <h2 class="section-title">Feito com carinho,<br>pensado pra você</h2>
 
   <div class="tabs">
+   
+    <button class="tab" onclick="filtrar('escova', this)">Escovas</button>
+    <button class="tab" onclick="filtrar('mão&pés', this)">Mãos & Pés</button>
+    <button class="tab" onclick="filtrar('quimicas', this)">Químicas</button> 
     <button class="tab active" onclick="filtrar('todos', this)">Tudo</button>
-    <button class="tab" onclick="filtrar('cafe', this)">escovas</button>
-    <button class="tab" onclick="filtrar('bolo', this)">maos & pes</button>
-    <button class="tab" onclick="filtrar('salgado', this)">quimicas</button>
   </div>
 
   <div class="produtos-grid" id="produtosGrid"></div>
@@ -119,7 +133,7 @@
 </footer>
 
 <!-- WhatsApp Flutuante -->
-<a href="https://wa.me/5511999999999?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20fazer%20um%20pedido%20ou%20tirar%20uma%20dúvida%20😊"
+<a href="https://wa.me/5592988565715?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20tirar%20uma%20dúvida%20😊"
    target="_blank" class="wa-float">
   <span class="wa-tooltip">Fale conosco!</span>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="28" height="28">

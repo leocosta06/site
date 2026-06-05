@@ -1,12 +1,12 @@
 // ─── HORÁRIOS CONST ───────────────────────────────────
 const horarios = [
-  { dia: 'Domingo', abre: '09:00', fecha: '18:00' },
-  { dia: 'Segunda', abre: '07:00', fecha: '20:00' },
-  { dia: 'Terça',   abre: '07:00', fecha: '20:00' },
-  { dia: 'Quarta',  abre: '07:00', fecha: '20:00' },
-  { dia: 'Quinta',  abre: '07:00', fecha: '21:00' },
-  { dia: 'Sexta',   abre: '07:00', fecha: '22:00' },
-  { dia: 'Sábado',  abre: '08:00', fecha: '22:00' },
+  { dia: 'Domingo', abre: null, fecha: null, fechado: true },
+  { dia: 'Segunda', abre: '09:00', fecha: '19:00' },
+  { dia: 'Quarta',  abre: '09:00', fecha: '19:00' },
+  { dia: 'Terça',   abre: '09:00', fecha: '19:00' },
+  { dia: 'Quinta',  abre: '09:00', fecha: '19:00' },
+  { dia: 'Sexta',   abre: '09:00', fecha: '19:00' },
+  { dia: 'Sábado',  abre: '09:00', fecha: '19:00' },
 ];
 
 function renderHorarios() {
@@ -20,16 +20,40 @@ function renderHorarios() {
   grid.innerHTML = '';
 
   diasOrdem.forEach(idx => {
-    const h        = horarios[idx];
-    const isHoje   = idx === diaSemana;
+    const h      = horarios[idx];
+    const isHoje = idx === diaSemana;
+
+    const card = document.createElement('div');
+    card.className = 'horario-card' + (isHoje ? ' hoje' : '');
+
+    if (h.fechado) {
+      card.innerHTML = `
+        <div>
+          <span class="dia-nome">
+            ${h.dia}${isHoje ? '<span class="hoje-badge">Hoje</span>' : ''}
+          </span>
+        </div>
+        <span class="horario-hora" style="color:#e74c3c;">Fechado</span>
+      `;
+      grid.appendChild(card);
+
+      if (isHoje) {
+        const statusBar = document.querySelector('.status-bar');
+        const txt = document.getElementById('statusText');
+        if (statusBar && txt) {
+          statusBar.className = 'status-bar status-closed';
+          txt.textContent = 'Fechado hoje · Voltamos na Segunda';
+        }
+      }
+      return;
+    }
+
     const [aH, aM] = h.abre.split(':').map(Number);
     const [fH, fM] = h.fecha.split(':').map(Number);
     const abreMin  = aH * 60 + aM;
     const fechaMin = fH * 60 + fM;
     const aberto   = isHoje && horaAtual >= abreMin && horaAtual < fechaMin;
 
-    const card = document.createElement('div');
-    card.className = 'horario-card' + (isHoje ? ' hoje' : '');
     card.innerHTML = `
       <div>
         <span class="dia-nome">
@@ -61,14 +85,15 @@ function renderHorarios() {
 
 // ─── PRODUTOS / SERVIÇOS ─────────────────────────────────
 const produtos = [
-  { nome: 'Escova Modelada',       cat: 'cafe',    emoji: '💇‍♀️', desc: 'Lavagem especial, secagem e modelagem dos fios', preco: 'R$ 60,00'  },
-  { nome: 'Escova Lisa Classic',   cat: 'cafe',    emoji: '✨', desc: 'Fios super alinhados, brilho intenso e finalização', preco: 'R$ 50,00'  },
-  { nome: 'Manicure Completa',     cat: 'bolo',    emoji: '💅', desc: 'Cututilagem, hidratação e esmaltação premium',      preco: 'R$ 35,00'  },
-  { nome: 'Pedicure Relax',        cat: 'bolo',    emoji: '🦶', desc: 'Esfoliação, cuidados com as unhas e massagem',      preco: 'R$ 40,00'  },
-  { nome: 'Spa dos Pés',           cat: 'bolo',    emoji: '🧼', desc: 'Tratamento profundo de hidratação para os pés',     preco: 'R$ 45,00'  },
-  { nome: 'Progressiva Orgânica',  cat: 'salgado', emoji: '🧪', desc: 'Alinhamento térmico zero formol, brilho espelhado', preco: 'R$ 180,00' },
-  { nome: 'Mechas / Luzes',        cat: 'salgado', emoji: '👱‍♀️', desc: 'Técnicas modernas para iluminar com saúde capilar',  preco: 'R$ 250,00' },
-  { nome: 'Botox Capilar',         cat: 'salgado', emoji: '💧', desc: 'Reposição de massa e redução extrema do frizz',    preco: 'R$ 120,00' }
+  { nome: 'Escova',       cat: 'escova',    emoji: '💇‍♀️', desc: 'Lavagem , secagem e modelagem dos fios', preco: 'À Partir de R$ 40,00'  },
+  { nome: 'Chapinha',   cat: 'escova',    emoji: '✨', desc: 'Fios super alinhados, brilho intenso e finalização', preco: 'R$ 40,00'  },
+  { nome: 'Manicure Completa',     cat: 'mão&pés',    emoji: '💅', desc: 'Cututilagem, hidratação e esmaltação premium',      preco: 'R$ 30,00'  },
+  { nome: 'Pedicure Completa',        cat: 'mão&pés',    emoji: '🦶', desc: 'Cututilagem, hidratação e esmaltação ',      preco: 'R$ 30,00'  },
+  { nome: 'Spa dos Pés',           cat: 'mão&pés',    emoji: '🧼', desc: 'Tratamento profundo de hidratação para os pés',     preco: 'R$ 70,00'  },
+  { nome: 'Progressiva Orgânica',  cat: 'quimicas', emoji: '🧪', desc: 'Alinhamento térmico zero formol, brilho espelhado', preco: 'R$ 200,00' },
+  { nome: 'Mechas / Luzes',        cat: 'quimicas', emoji: '👱‍♀️', desc: 'Técnicas modernas para iluminar com saúde capilar',  preco: 'À Partir de R$ 250,00' },
+  { nome: 'Retoque de Raiz',         cat: 'quimicas', emoji: '💧', desc: 'Reposição de massa e redução extrema do frizz',    preco: 'À Partir de R$ 70,00' },
+  { nome: 'Pedicure + Manicure',        cat: 'mão&pés',    emoji: '🦶', desc: 'De segunda a Quarta',      preco: 'R$ 35,00'  }
 ];
 
 function renderProdutos() {
