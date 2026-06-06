@@ -130,9 +130,10 @@ nav.shrink      { padding: 8px 5%; }
 .navtop {
   display: flex;
   align-items: center;
-  justify-content:space-between ;
+  justify-content: space-between;
   gap: 20px;
   flex-grow: 1;
+  position: relative;
 }
 
 .nav-logo {
@@ -144,6 +145,12 @@ nav.shrink      { padding: 8px 5%; }
   align-items: center;
   gap: 10px;
   white-space: nowrap;
+}
+
+.nav-logo img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-links {
@@ -176,13 +183,14 @@ nav.shrink      { padding: 8px 5%; }
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  justify-self:center;
   white-space: nowrap;
-  margin-left: 10px;
   padding: 4px 12px;
   border-radius: 20px;
   transition: all 0.4s ease;
-  animation: pulse 2s infinite;
+  animation: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .status-bar.status-open {
@@ -378,6 +386,14 @@ nav.shrink      { padding: 8px 5%; }
   justify-content: center;
   flex-shrink: 0;
 }
+.icon-svg {
+  width: 40px;
+  color: red;
+  height: 40px;
+  stroke-width: 0.11rem;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 .loc-text h4 {
   color: var(--dourado-claro);
@@ -403,11 +419,9 @@ nav.shrink      { padding: 8px 5%; }
 .insta-card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   background: linear-gradient(145deg, #1a0a2e, #2a0a1e, #1a1a2e);
   border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 20px;
-  padding: 28px;
   text-decoration: none;
   color: var(--texto-claro);
   height: 100%;
@@ -426,7 +440,17 @@ nav.shrink      { padding: 8px 5%; }
   pointer-events: none;
 }
 
-.insta-card:hover {
+.insta-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(193, 53, 132, 0.25);
 }
@@ -713,11 +737,14 @@ footer a {
   }
 
   .nav-logo {
-    
     font-size: 2rem !important;
     gap: 6px !important;
     flex-shrink: 1 !important;
     min-width: 0 !important;
+  }
+
+  .nav-logo img {
+    height: 36px !important;
   }
 
   /* Hambúrguer aparece */
@@ -754,7 +781,9 @@ footer a {
   .status-bar.status-open,
   .status-bar.status-closed {
     display: block !important;
-   
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
     text-align: center !important;
     font-size: 0.68rem !important;
     padding: 5px 10px !important;

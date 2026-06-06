@@ -2,8 +2,8 @@
 const horarios = [
   { dia: 'Domingo', abre: null, fecha: null, fechado: true },
   { dia: 'Segunda', abre: '09:00', fecha: '19:00' },
-  { dia: 'Quarta',  abre: '09:00', fecha: '19:00' },
   { dia: 'Terça',   abre: '09:00', fecha: '19:00' },
+  { dia: 'Quarta',  abre: '09:00', fecha: '19:00' },
   { dia: 'Quinta',  abre: '09:00', fecha: '19:00' },
   { dia: 'Sexta',   abre: '09:00', fecha: '19:00' },
   { dia: 'Sábado',  abre: '09:00', fecha: '19:00' },
@@ -87,13 +87,13 @@ function renderHorarios() {
 const produtos = [
   { nome: 'Escova',       cat: 'escova',    emoji: '💇‍♀️', desc: 'Lavagem , secagem e modelagem dos fios', preco: 'À Partir de R$ 40,00'  },
   { nome: 'Chapinha',   cat: 'escova',    emoji: '✨', desc: 'Fios super alinhados, brilho intenso e finalização', preco: 'R$ 40,00'  },
-  { nome: 'Manicure Completa',     cat: 'mão&pés',    emoji: '💅', desc: 'Cututilagem, hidratação e esmaltação premium',      preco: 'R$ 30,00'  },
-  { nome: 'Pedicure Completa',        cat: 'mão&pés',    emoji: '🦶', desc: 'Cututilagem, hidratação e esmaltação ',      preco: 'R$ 30,00'  },
-  { nome: 'Spa dos Pés',           cat: 'mão&pés',    emoji: '🧼', desc: 'Tratamento profundo de hidratação para os pés',     preco: 'R$ 70,00'  },
+  { nome: 'Manicure Completa',     cat: 'mao-pes',    emoji: '💅', desc: 'Cututilagem, hidratação e esmaltação premium',      preco: 'R$ 30,00'  },
+  { nome: 'Pedicure Completa',        cat: 'mao-pes',    emoji: '🦶', desc: 'Cututilagem, hidratação e esmaltação ',      preco: 'R$ 30,00'  },
+  { nome: 'Spa dos Pés',           cat: 'mao-pes',    emoji: '🧼', desc: 'Tratamento profundo de hidratação para os pés',     preco: 'R$ 70,00'  },
   { nome: 'Progressiva Orgânica',  cat: 'quimicas', emoji: '🧪', desc: 'Alinhamento térmico zero formol, brilho espelhado', preco: 'R$ 200,00' },
   { nome: 'Mechas / Luzes',        cat: 'quimicas', emoji: '👱‍♀️', desc: 'Técnicas modernas para iluminar com saúde capilar',  preco: 'À Partir de R$ 250,00' },
   { nome: 'Retoque de Raiz',         cat: 'quimicas', emoji: '💧', desc: 'Reposição de massa e redução extrema do frizz',    preco: 'À Partir de R$ 70,00' },
-  { nome: 'Pedicure + Manicure',        cat: 'mão&pés',    emoji: '🦶', desc: 'De segunda a Quarta',      preco: 'R$ 35,00'  }
+  { nome: 'Pedicure + Manicure',        cat: 'mao-pes',    emoji: '🦶', desc: 'De segunda a Quarta',      preco: 'R$ 35,00'  }
 ];
 
 function renderProdutos() {
