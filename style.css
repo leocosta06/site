@@ -451,9 +451,8 @@ nav.shrink      { padding: 8px 5%; }
 }
 
 
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(193, 53, 132, 0.25);
-}
+ 
+
 
 .insta-card-top {
   display: flex;
@@ -620,6 +619,18 @@ nav.shrink      { padding: 8px 5%; }
   font-weight: 900;
   font-size: 1.2rem;
   color: var(--dourado-principal);
+}
+
+.insta-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* No desktop, esconde o botão duplicado dentro da coluna do insta */
+.btn-mapa-insta {
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -884,6 +895,14 @@ footer a {
     gap: 20px;
   }
 
+  /* No mobile, inverte a ordem: insta+mapa vai pra baixo dos cards */
+  .loc-grid > div:first-child { order: 1; }
+  .insta-col { order: 2; }
+
+  /* Troca qual botão de mapa fica visível */
+  .btn-mapa-cards { display: none !important; }
+  .btn-mapa-insta { display: inline-flex !important; }
+
   .loc-card {
     padding: 18px;
     gap: 12px;
@@ -896,15 +915,15 @@ footer a {
     font-size: 1.3rem;
     flex-shrink: 0;
   }
-
+ .insta-card {
+    min-height: 220px;
+    padding: 20px;
+  }
   .loc-text p {
     font-size: 0.82rem;
   }
 
-  .insta-card {
-    min-height: 220px;
-    padding: 20px;
-  }
+ 
 
   /* SERVIÇOS */
   .tabs {

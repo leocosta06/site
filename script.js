@@ -9,6 +9,20 @@ const horarios = [
   { dia: 'Sábado',  abre: '09:00', fecha: '19:00' },
 ];
 
+// Retorna o nome do próximo dia com funcionamento
+function getProximoDiaUtil(diaAtualIdx) {
+  // diaAtualIdx: 0=Dom, 1=Seg, ..., 6=Sáb
+  for (let i = 1; i <= 7; i++) {
+    const nextIdx = (diaAtualIdx + i) % 7;
+    const h = horarios[nextIdx];
+    if (!h.fechado) {
+      if (i === 1) return 'amanhã';
+      return `${h.dia === 'Sábado' ? 'no Sábado' : `na ${h.dia}`}`;
+    }
+  }
+  return 'em breve';
+}
+
 function renderHorarios() {
   const now       = new Date();
   const diaSemana = now.getDay(); 
@@ -42,7 +56,8 @@ function renderHorarios() {
         const txt = document.getElementById('statusText');
         if (statusBar && txt) {
           statusBar.className = 'status-bar status-closed';
-          txt.textContent = 'Fechado hoje · Voltamos na Segunda';
+          const proximoDia = getProximoDiaUtil(idx);
+          txt.textContent = `Fechado hoje · Voltamos ${proximoDia}`;
         }
       }
       return;
@@ -75,8 +90,10 @@ function renderHorarios() {
           statusBar.className = 'status-bar status-closed';
           txt.textContent = `Fechado · Abrimos hoje às ${h.abre}`;
         } else {
+          // Determina o próximo dia com funcionamento
           statusBar.className = 'status-bar status-closed';
-          txt.textContent = `Fechado hoje · Voltamos amanhã`;
+          const proximoDia = getProximoDiaUtil(idx);
+          txt.textContent = `Fechado · Voltamos ${proximoDia}`;
         }
       }
     }
