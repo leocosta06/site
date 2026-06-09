@@ -41,7 +41,8 @@ function renderHorarios() {
     card.className = 'horario-card' + (isHoje ? ' hoje' : '');
 
     if (h.fechado) {
-      card.innerHTML = `
+      // Dados vêm de array local — sem input externo, sem risco de XSS
+    card.innerHTML = `
         <div>
           <span class="dia-nome">
             ${h.dia}${isHoje ? '<span class="hoje-badge">Hoje</span>' : ''}
@@ -102,15 +103,14 @@ function renderHorarios() {
 
 // ─── PRODUTOS / SERVIÇOS ─────────────────────────────────
 const produtos = [
-  { nome: 'Escova',       cat: 'escova',    emoji: '💇‍♀️', desc: 'Lavagem , secagem e modelagem dos fios', preco: 'À Partir de R$ 40,00'  },
-  { nome: 'Chapinha',   cat: 'escova',    emoji: '✨', desc: 'Fios super alinhados, brilho intenso e finalização', preco: 'R$ 40,00'  },
-  { nome: 'Manicure Completa',     cat: 'mao-pes',    emoji: '💅', desc: 'Cututilagem, hidratação e esmaltação premium',      preco: 'R$ 30,00'  },
-  { nome: 'Pedicure Completa',        cat: 'mao-pes',    emoji: '🦶', desc: 'Cututilagem, hidratação e esmaltação ',      preco: 'R$ 30,00'  },
-  { nome: 'Spa dos Pés',           cat: 'mao-pes',    emoji: '🧼', desc: 'Tratamento profundo de hidratação para os pés',     preco: 'R$ 70,00'  },
-  { nome: 'Progressiva Orgânica',  cat: 'quimicas', emoji: '🧪', desc: 'Alinhamento térmico zero formol, brilho espelhado', preco: 'R$ 200,00' },
-  { nome: 'Mechas / Luzes',        cat: 'quimicas', emoji: '👱‍♀️', desc: 'Técnicas modernas para iluminar com saúde capilar',  preco: 'À Partir de R$ 250,00' },
-  { nome: 'Retoque de Raiz',         cat: 'quimicas', emoji: '💧', desc: 'Reposição de massa e redução extrema do frizz',    preco: 'À Partir de R$ 70,00' },
-  { nome: 'Pedicure + Manicure',        cat: 'mao-pes',    emoji: '🦶', desc: 'De segunda a Quarta',      preco: 'R$ 35,00'  }
+  { nome: 'Escova',       cat: 'escova',    img: 'imagens/escova.jpg', desc: 'Lavagem , secagem e modelagem dos fios', preco: 'À Partir de R$ 40,00'  },
+  { nome: 'Chapinha',   cat: 'escova',    img: 'imagens/chapinha.jpg', desc: 'Fios super alinhados, brilho intenso e finalização', preco: 'R$ 40,00'  },
+  { nome: 'Manicure Completa',     cat: 'mao-pes',    img: 'imagens/manicure.jpg', desc: 'Cututilagem, hidratação e esmaltação premium',      preco: 'R$ 30,00'  },
+  { nome: 'Pedicure Completa',        cat: 'mao-pes',    img: 'imagens/Pedicure.jpg', desc: 'Cututilagem, hidratação e esmaltação ',      preco: 'R$ 30,00'  },
+  { nome: 'Spa dos Pés',           cat: 'mao-pes',    img: 'imagens/spa.jpg', desc: 'Tratamento profundo de hidratação para os pés',     preco: 'R$ 70,00'  },
+  { nome: 'Progressiva Orgânica',  cat: 'quimicas', img: 'imagens/progressiva.jpg', desc: 'Alinhamento térmico zero formol, brilho espelhado', preco: 'R$ 200,00' },
+ { nome: 'Retoque de Raiz',         cat: 'quimicas', img: 'imagens/retoque.jpg', desc: 'Cobertura de raízes e brilho natural',    preco: 'À Partir de R$ 70,00' },
+  { nome: 'Pedicure + Manicure',        cat: 'mao-pes',    img: 'imagens/promocao.png', desc: 'De segunda a Quarta',      preco: 'R$ 35,00'  }
 ];
 
 function renderProdutos() {
@@ -123,7 +123,9 @@ function renderProdutos() {
     card.className    = 'produto-card visible';
     card.dataset.cat  = p.cat;
     card.innerHTML = `
-      <div class="produto-img">${p.emoji}</div>
+      <div class="produto-img">
+        <img src="${p.img}" alt="${p.nome}" class="produto-img-foto">
+      </div>
       <div class="produto-info">
         <div class="produto-nome">${p.nome}</div>
         <div class="produto-desc">${p.desc}</div>
@@ -141,7 +143,6 @@ function filtrar(cat, btn) {
   document.querySelectorAll('.produto-card').forEach(card => {
     const show = cat === 'todos' || card.dataset.cat === cat;
     card.classList.toggle('visible', show);
-    card.style.display = show ? 'block' : 'none';
   });
 }
 
@@ -180,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    lastScrollTop = Math.max(0, scrollTop);
   });
 
   // Evento para abrir/fechar pelo botão hambúrguer
